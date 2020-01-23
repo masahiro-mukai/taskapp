@@ -33,7 +33,7 @@ class InputViewController: UIViewController {
     }
     
     // DB更新(遷移する際、画面が非表示になる時に呼ばれるメソッド)
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         try! realm.write {
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
@@ -42,7 +42,7 @@ class InputViewController: UIViewController {
         }
         
         setNotification(task: task)
-        super.viewWillAppear(animated)
+        super.viewWillDisappear(animated)
     }
     
     // タスクのローカル通知を登録する --- ここから ---
